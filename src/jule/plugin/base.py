@@ -87,6 +87,11 @@ class PluginBase(abc.ABC):
             ScreenQuery('ALL', 'select * from entries')
         ]
 
+    @property
+    @abc.abstractmethod
+    def version(self):
+        raise NotImplementedError
+
 
 def load_from_module(module_name: str) -> PluginBase:
     LOGGER.info('loading plugin from module "%s"...', module_name)

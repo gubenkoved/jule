@@ -40,5 +40,9 @@ class SamplePlugin(PluginBase):
             ], None)
         ]
 
+    @property
+    def version(self):
+        return '1.0.0'
+
 
 PLUGIN_CLASS = SamplePlugin

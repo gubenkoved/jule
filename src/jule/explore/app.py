@@ -24,8 +24,7 @@ from jule.plugin import PluginBase, load_from_module, get_default_plugin_class_n
 LOGGER = logging.getLogger(__name__)
 
 APP_TITLE = 'JULE'
-APP_VERSION = VERSION
-APP_SUBTITLE = 'LDAP Explorer (ver %s)' % APP_VERSION
+APP_SUBTITLE = 'LDAP Explorer'
 
 
 class ExplorerApp(App):
@@ -136,13 +135,19 @@ def main():
     try:
         LOGGER.debug('starting up')
 
-        plugin = load_from_module(args.plugin_module)
+        plugin_module_name = args.plugin_module
+        plugin = load_from_module(plugin_module_name)
 
         settings = AppSettings(
             data_dir=args.data_dir,
             cache_dir=args.cache_dir,
             export_dir=args.export_dir,
             plugin=plugin,
+        )
+
+        ExplorerApp.SUB_TITLE = (
+            APP_SUBTITLE +
+            ' (v%s, %s v%s)' % (VERSION, plugin_module_name, plugin.version)
         )
 
         app = ExplorerApp(
