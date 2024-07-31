@@ -19,7 +19,7 @@ from jule.explore.settings import AppSettings
 from jule.explore.snapshot_picker_screen import SnapshotPickerScreen
 from jule.explore.timeline_screen import TimelineScreen
 from jule.explore.under_construction_screen import UnderConstructionScreen
-from jule.plugin import PluginBase, load_from_module
+from jule.plugin import PluginBase, load_from_module, get_default_plugin_class_name
 
 LOGGER = logging.getLogger(__name__)
 
@@ -117,7 +117,7 @@ def main():
     parser.add_argument('--cache-dir', type=str, default='cache')
     parser.add_argument('--export-dir', type=str, default='export')
     parser.add_argument('--log-path', type=str, default='explore.log')
-    parser.add_argument('--plugin-module', type=str, default='jule.plugin.sample')
+    parser.add_argument('--plugin-module', type=str, default=get_default_plugin_class_name())
     args = parser.parse_args()
 
     logging.basicConfig(
