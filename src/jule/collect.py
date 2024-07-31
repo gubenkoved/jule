@@ -14,7 +14,7 @@ from ldap.controls.pagedresults import SimplePagedResultsControl
 from ldap.ldapobject import LDAPObject
 
 from jule.common import fully_qualified_class_name
-from jule.plugin import LdapQuerySet, load_from_module
+from jule.plugin import LdapQuerySet, load_from_module, get_default_plugin_class_name
 from jule.state import LdapStorageContainer, LdapSnapshotData, LdapSnapshotMetadata
 
 LOGGER = logging.getLogger(__name__)
@@ -115,6 +115,7 @@ def main():
     parser.add_argument('--config-path', type=str, default='config.json', required=False)
     parser.add_argument('--data-dir', type=str, default='data', required=False)
     parser.add_argument('--log-path', type=str, default='collect.log', required=False)
+    parser.add_argument('--plugin-module', type=str, default=get_default_plugin_class_name())
 
     args = parser.parse_args()
 
@@ -128,7 +129,6 @@ def main():
     # install colorful logging for all the loggers
     coloredlogs.install(level=logging.DEBUG)
 
-    # TODO: store name of the plugin class inside the config
     config = load_config(
         path=args.config_path
     )
@@ -149,7 +149,7 @@ def main():
     LOGGER.debug('authenticated')
 
     helper = LdapHelper(client)
-    plugin = load_from_module('jule.plugin.sample')
+    plugin = load_from_module(args.plugin_module)
     query_sets_by_label = {
         qs.label: qs for qs in plugin.ldap_query_sets
     }
