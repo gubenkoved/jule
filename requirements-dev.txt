@@ -74,7 +74,7 @@ rich==13.7.1
     # via
     #   -c requirements.txt
     #   textual
-textual==0.74.0
+textual==0.75.1
     # via
     #   -c requirements.txt
     #   textual-dev
