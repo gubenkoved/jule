@@ -5,3 +5,4 @@ wheel
 pip-tools
 build
 flake8
+faker
