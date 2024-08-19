@@ -1,5 +1,6 @@
 import functools
 import os.path
+import uuid
 from typing import List, Dict
 
 import pandasql
@@ -119,10 +120,11 @@ class ChangesScreen(ScreenBase):
         )
 
     def action_open_picker(self):
-        def check_exit(query: str):
-            self.render_query(query)
+        async def check_exit(query: str):
+            await self.render_query(query)
 
-        query_picker_screen: QueryPickerScreen = self.app.get_screen(QUERY_PICKER_SCREEN_NAME)
+        query_picker_screen: QueryPickerScreen = self.app.get_screen(
+            QUERY_PICKER_SCREEN_NAME)
 
         if self.data_frame is not None:
             query_picker_screen.help_text = construct_data_frame_help_text(
@@ -154,7 +156,7 @@ class ChangesScreen(ScreenBase):
             lambda: self.render_query(list(self.plugin_queries.values())[0])
         )
 
-    def render_query(self, query: str):
+    async def render_query(self, query: str):
         assert self.data_frame is not None
 
         try:
@@ -163,12 +165,12 @@ class ChangesScreen(ScreenBase):
             })
         except pandasql.PandaSQLException as err:
             self.hide_loader()
-            self.app.push_screen(
+            await self.app.push_screen(
                 ErrorScreen(error_message=str(err)),
             )
             return
 
-        self.query('#data').remove()
+        await self.query('#data').remove()
 
         frame_view = DataFrameView(
             id='data',
@@ -177,6 +179,6 @@ class ChangesScreen(ScreenBase):
         )
 
         self.hide_loader()
-        self.mount(frame_view)
+        await self.mount(frame_view)
 
         frame_view.focus()
