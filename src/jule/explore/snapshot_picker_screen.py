@@ -5,7 +5,6 @@ from typing import Optional
 
 from textual import on
 from textual.app import ComposeResult
-from textual.containers import Container
 from textual.screen import Screen
 from textual.widgets import (
     Footer,
@@ -28,6 +27,12 @@ class SnapshotPickerScreen(Screen):
         ('escape', 'app.pop_screen', 'Back'),
     ]
 
+    CSS = """
+#picker {
+    height: 100%;
+}
+"""
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -42,8 +47,6 @@ class SnapshotPickerScreen(Screen):
         self.styles.align_horizontal = 'center'
 
         table = DataTable(cursor_type='row', zebra_stripes=True, id='picker')
-        table.styles.margin = (2, 4)
-        table.styles.height = '100%'
 
         table.add_column('FILENAME')
         table.add_column('DATE')
@@ -51,10 +54,7 @@ class SnapshotPickerScreen(Screen):
         table.add_column('ENTRIES')
         table.add_column('SIZE')
 
-        container = Container(table)
-        container.styles.max_width = 160
-
-        yield container
+        yield table
 
     def on_mount(self):
         base_path = os.path.abspath(self.settings.data_dir)
