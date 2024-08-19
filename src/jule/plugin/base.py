@@ -72,13 +72,14 @@ class PluginBase(abc.ABC):
     @property
     def snapshot_screen_queries(self) -> list[ScreenQuery]:
         return [
-            ScreenQuery('ALL', 'select * from entries')
+            ScreenQuery('ALL', 'select * from entries'),
         ]
 
     @property
     def changes_screen_queries(self) -> list[ScreenQuery]:
         return [
-            ScreenQuery('ALL', 'select * from entries')
+            ScreenQuery('LIGHT', 'select dn, full_name, updated_props from changes'),
+            ScreenQuery('ALL', 'select * from changes'),
         ]
 
     @property

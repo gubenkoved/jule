@@ -8,6 +8,8 @@ class SampleExtractor(ExtractorBase):
             'dn',
             'full_name',
             'manager_name',
+            'title',
+            'department',
         ]
 
     def extract(self, dn: str, prop: str):
@@ -23,6 +25,10 @@ class SampleExtractor(ExtractorBase):
                 return load_text_attr(manager_entry, 'displayName')
             else:
                 return None
+        elif prop == 'title':
+            return load_text_attr(entry, 'title')
+        elif prop == 'department':
+            return load_text_attr(entry, 'department')
         else:
             raise ValueError('Property {} not supported'.format(prop))
 
