@@ -1,6 +1,5 @@
 import functools
 import os.path
-import uuid
 from typing import List, Dict
 
 import pandasql
@@ -16,6 +15,7 @@ from jule.explore.common import (
 )
 from jule.explore.data_frame_view_widget import DataFrameView
 from jule.explore.error_screen import ErrorScreen
+from jule.explore.placeholder_widget import PlaceholderWidget
 from jule.explore.query_picker_screen import QueryPickerScreen
 from jule.explore.screen_base import ScreenBase
 from jule.plugin import ExtractorBase
@@ -158,6 +158,13 @@ class ChangesScreen(ScreenBase):
 
     async def render_query(self, query: str):
         assert self.data_frame is not None
+
+        if len(self.data_frame) == 0:
+            self.hide_loader()
+            await self.mount(
+                PlaceholderWidget(text='NO DATA AVAILABLE')
+            )
+            return
 
         try:
             result_frame = pandasql.sqldf(query, {

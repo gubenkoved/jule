@@ -11,7 +11,7 @@ Breadcrumb {
     dock: top;
     height: 1;
     width: 100%;
-    background: $primary-darken-1;
+    background: $primary;
     color: $text;
     text-style: bold;
 }
