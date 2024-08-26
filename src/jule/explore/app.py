@@ -31,8 +31,8 @@ class ExplorerApp(App):
     TITLE = APP_TITLE
     SUB_TITLE = APP_SUBTITLE
     SCREENS = {
-        'help': HelpScreen(),
-        'under_construction': UnderConstructionScreen(),
+        'help': HelpScreen,
+        'under_construction': UnderConstructionScreen,
     }
     BINDINGS = [
         ('t', 'toggle_dark', 'Toggle theme'),
