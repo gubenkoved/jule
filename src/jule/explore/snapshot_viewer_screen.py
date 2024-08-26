@@ -114,7 +114,7 @@ class SnapshotViewerScreen(ScreenBase):
             )
         )
 
-    def render_query(self, query: str):
+    async def render_query(self, query: str):
         self.show_loader()
 
         try:
@@ -122,14 +122,14 @@ class SnapshotViewerScreen(ScreenBase):
                 'entries': self.data_frame,
             })
         except pandasql.PandaSQLException as err:
-            self.app.push_screen(
+            await self.app.push_screen(
                 ErrorScreen(error_message=str(err)),
             )
             return
         finally:
             self.hide_loader()
 
-        self.query('#data').remove()
+        await self.query('#data').remove()
 
         frame_view: DataFrameView = DataFrameView(
             id='data',
@@ -139,6 +139,6 @@ class SnapshotViewerScreen(ScreenBase):
 
         self.searcher = DataTableSearcher(frame_view.data_table)
 
-        self.mount(frame_view)
+        await self.mount(frame_view)
 
         frame_view.focus()
