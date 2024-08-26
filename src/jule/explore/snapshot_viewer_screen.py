@@ -68,8 +68,8 @@ class SnapshotViewerScreen(ScreenBase):
         )
 
     def action_open_picker(self):
-        def check_exit(query: str):
-            self.render_query(query)
+        async def check_exit(query: str):
+            await self.render_query(query)
 
         query_picker_screen: QueryPickerScreen = self.app.get_screen(
             QUERY_PICKER_SCREEN_NAME
