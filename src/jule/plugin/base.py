@@ -72,6 +72,7 @@ class PluginBase(abc.ABC):
     @property
     def snapshot_screen_queries(self) -> list[ScreenQuery]:
         return [
+            ScreenQuery('LIGHT', 'select dn, full_name, title, department from entries'),
             ScreenQuery('ALL', 'select * from entries'),
         ]
 
