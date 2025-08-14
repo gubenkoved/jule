@@ -10,63 +10,90 @@ humanfriendly==10.0
     # via coloredlogs
 linkify-it-py==2.0.3
     # via markdown-it-py
-markdown-it-py[linkify,plugins]==3.0.0
+markdown-it-py[linkify,plugins]==4.0.0
     # via
     #   mdit-py-plugins
     #   rich
     #   textual
-mdit-py-plugins==0.4.1
+mdit-py-plugins==0.5.0
     # via markdown-it-py
 mdurl==0.1.2
     # via markdown-it-py
-numpy==2.1.0
+numpy==2.3.2
     # via
     #   pandas
     #   pandasql
-pandas==2.2.2
+pandas==2.3.1
     # via
     #   jule (setup.py)
     #   pandasql
 pandasql==0.7.3
     # via jule (setup.py)
-pyasn1==0.6.0
+platformdirs==4.3.8
+    # via textual
+pyasn1==0.6.1
     # via
     #   pyasn1-modules
     #   python-ldap
-pyasn1-modules==0.4.0
+pyasn1-modules==0.4.2
     # via python-ldap
-pygments==2.18.0
-    # via rich
+pygments==2.19.2
+    # via
+    #   rich
+    #   textual
 python-dateutil==2.9.0.post0
     # via pandas
 python-ldap==3.4.4
     # via jule (setup.py)
-pytz==2024.1
+pytz==2025.2
     # via pandas
-rich==13.7.1
+rich==14.1.0
     # via textual
-six==1.16.0
+six==1.17.0
     # via python-dateutil
-sqlalchemy==2.0.32
+sqlalchemy==2.0.43
     # via pandasql
 tabulate==0.9.0
     # via jule (setup.py)
-textual[syntax]==0.77.0
+textual[syntax]==5.3.0
     # via jule (setup.py)
-tree-sitter==0.20.4
-    # via
-    #   textual
-    #   tree-sitter-languages
-tree-sitter-languages==1.10.2
+tree-sitter==0.25.1
     # via textual
-typing-extensions==4.12.2
+tree-sitter-bash==0.25.0
+    # via textual
+tree-sitter-css==0.23.2
+    # via textual
+tree-sitter-go==0.23.4
+    # via textual
+tree-sitter-html==0.23.2
+    # via textual
+tree-sitter-java==0.23.5
+    # via textual
+tree-sitter-javascript==0.23.1
+    # via textual
+tree-sitter-json==0.24.8
+    # via textual
+tree-sitter-markdown==0.3.2
+    # via textual
+tree-sitter-python==0.23.6
+    # via textual
+tree-sitter-regex==0.24.3
+    # via textual
+tree-sitter-rust==0.23.2
+    # via textual
+tree-sitter-sql==0.3.7
+    # via textual
+tree-sitter-toml==0.7.0
+    # via textual
+tree-sitter-xml==0.7.0
+    # via textual
+tree-sitter-yaml==0.7.1
+    # via textual
+typing-extensions==4.14.1
     # via
     #   sqlalchemy
     #   textual
-tzdata==2024.1
+tzdata==2025.2
     # via pandas
 uc-micro-py==1.0.3
     # via linkify-it-py
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools
