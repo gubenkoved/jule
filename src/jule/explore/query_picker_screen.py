@@ -10,7 +10,6 @@ from textual.widget import Widget
 from textual.widgets import (
     Static, ListView, ListItem, TextArea,
 )
-from tree_sitter_languages import get_language
 
 
 class QueryPickerScreen(ModalScreen):
@@ -60,10 +59,6 @@ ListView > ListItem {
         self.queries = copy.deepcopy(queries)  # mutable
         self.orig_queries = copy.deepcopy(queries)  # immutable
         self.selected_query_name = list(queries.keys())[0]
-        self.sqlite_lang = get_language('sqlite')
-        self.sqlite_lang_highlight_query = (
-                Path(__file__).parent.parent / 'data' / 'sqlite_highlights.scm'
-        ).read_text()
         self.help_text: Widget = None
 
     def compose(self) -> ComposeResult:
@@ -71,12 +66,27 @@ ListView > ListItem {
 
         text_area = TextArea(id='query')
         text_area.cursor_blink = True
-        text_area.register_language(self.sqlite_lang, self.sqlite_lang_highlight_query)
-        text_area.language = 'sqlite'
+
+        # technically this is not correct as we use SQLite, but modern
+        # tree-sitter is broken for dynamically defined languages
+        # see https://github.com/grantjenks/py-tree-sitter-languages/issues/64
+        # https://github.com/tree-sitter/py-tree-sitter/issues/303
+        text_area.language = 'sql'
+
+        queries_list_items = []
+        for query_name in self.queries:
+            list_item = ListItem(
+                Static(query_name)
+            )
+            list_item.query_name = query_name
+            queries_list_items.append(list_item)
+
+        queries_list = ListView(id='queries', *queries_list_items)
 
         yield Container(
             Container(
-                ListView(id='queries'), id='left-dock'
+                queries_list,
+                id='left-dock'
             ),
             Container(
                 text_area,
@@ -88,14 +98,6 @@ ListView > ListItem {
 
     def on_mount(self):
         queries_list = self.query_one('#queries', expect_type=ListView)
-
-        for query_name in self.queries:
-            list_item = ListItem(
-                Static(query_name)
-            )
-            list_item.query_name = query_name
-            queries_list.append(list_item)
-
         queries_list.focus()
         self.update_help_text()
 
