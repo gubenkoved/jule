@@ -67,8 +67,10 @@ multidict==6.7.0
     # via
     #   aiohttp
     #   yarl
-packaging==25.0
-    # via build
+packaging==26.0
+    # via
+    #   build
+    #   wheel
 pip-tools==7.5.2
     # via -r requirements-dev.in
 platformdirs==4.5.1
@@ -116,7 +118,7 @@ uc-micro-py==1.0.3
     # via
     #   -c requirements.txt
     #   linkify-it-py
-wheel==0.45.1
+wheel==0.46.3
     # via
     #   -r requirements-dev.in
     #   pip-tools
