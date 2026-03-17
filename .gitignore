@@ -7,4 +7,5 @@ build
 cache
 .idea
 __pycache__
-
+*.log
+sample-data/
