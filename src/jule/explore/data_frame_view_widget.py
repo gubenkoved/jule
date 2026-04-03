@@ -53,7 +53,8 @@ DataFrameView DataTable {
             self.data_table.add_column(column)
 
         def render(val):
-            if val is None:
+            # handles both None and NaN
+            if pandas.isna(val):
                 return self.NULL_REPLACEMENT
             return val
 
