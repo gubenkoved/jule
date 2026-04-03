@@ -6,7 +6,7 @@
 #
 aiohappyeyeballs==2.6.1
     # via aiohttp
-aiohttp==3.13.3
+aiohttp==3.13.5
     # via
     #   aiohttp-jinja2
     #   textual-dev
@@ -15,9 +15,9 @@ aiohttp-jinja2==1.6
     # via textual-serve
 aiosignal==1.4.0
     # via aiohttp
-attrs==25.4.0
+attrs==26.1.0
     # via aiohttp
-build==1.4.0
+build==1.4.2
     # via
     #   -r requirements-dev.in
     #   pip-tools
@@ -25,7 +25,7 @@ click==8.3.1
     # via
     #   pip-tools
     #   textual-dev
-faker==40.1.2
+faker==40.12.0
     # via -r requirements-dev.in
 flake8==7.3.0
     # via -r requirements-dev.in
@@ -39,7 +39,7 @@ jinja2==3.1.6
     # via
     #   aiohttp-jinja2
     #   textual-serve
-linkify-it-py==2.0.3
+linkify-it-py==2.1.0
     # via
     #   -c requirements.txt
     #   markdown-it-py
@@ -63,7 +63,7 @@ mdurl==0.1.2
     #   markdown-it-py
 msgpack==1.1.2
     # via textual-dev
-multidict==6.7.0
+multidict==6.7.1
     # via
     #   aiohttp
     #   yarl
@@ -71,9 +71,9 @@ packaging==26.0
     # via
     #   build
     #   wheel
-pip-tools==7.5.2
+pip-tools==7.5.3
     # via -r requirements-dev.in
-platformdirs==4.5.1
+platformdirs==4.9.4
     # via
     #   -c requirements.txt
     #   textual
@@ -85,7 +85,7 @@ pycodestyle==2.14.0
     # via flake8
 pyflakes==3.4.0
     # via flake8
-pygments==2.19.2
+pygments==2.20.0
     # via
     #   -c requirements.txt
     #   rich
@@ -94,12 +94,12 @@ pyproject-hooks==1.2.0
     # via
     #   build
     #   pip-tools
-rich==14.2.0
+rich==14.3.3
     # via
     #   -c requirements.txt
     #   textual
     #   textual-serve
-textual==7.3.0
+textual==8.2.1
     # via
     #   -c requirements.txt
     #   textual-dev
@@ -114,7 +114,7 @@ typing-extensions==4.15.0
     #   aiosignal
     #   textual
     #   textual-dev
-uc-micro-py==1.0.3
+uc-micro-py==2.0.0
     # via
     #   -c requirements.txt
     #   linkify-it-py
@@ -122,7 +122,7 @@ wheel==0.46.3
     # via
     #   -r requirements-dev.in
     #   pip-tools
-yarl==1.22.0
+yarl==1.23.0
     # via aiohttp
 
 # The following packages are considered to be unsafe in a requirements file:

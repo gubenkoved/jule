@@ -4,7 +4,7 @@ ROOT_DIR=$( cd "$( dirname "$0" )" && cd .. && pwd )
 
 cd "$ROOT_DIR"
 
-echo 'Use "--upgrade" to upgrade packages'
+[[ "$*" != *"--upgrade"* ]] && echo 'HINT: Use "--upgrade" to upgrade packages'
 
 pip-compile "$@" > requirements.txt
 pip-compile "$@" requirements-dev.in -c requirements.txt > requirements-dev.txt
